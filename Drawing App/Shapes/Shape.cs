@@ -1,39 +1,48 @@
-﻿using System;
-using System.Drawing;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing.Drawing2D;
+using System.Xml.Serialization;
 
 namespace Drawing_App.Shapes
 {
-    public abstract class Shape
+    [Serializable]
+    [XmlInclude(typeof(Shapes.LineShape))]
+    [XmlInclude(typeof(Shapes.RectangleShape))]
+    [XmlInclude(typeof(Shapes.TriangleShape))]
+    [XmlInclude(typeof(Shapes.EllipseShape))]
+    public abstract class Shape : ICloneable
     {
-        public int X { get; set; }
-        public int Y { get; set; }
-        public int Width { get; set; }
-        public int Height { get; set; }
-        public Color Color { get; set; }
-        public float PenWidth { get; set; }
-        public bool IsSelected { get; set; }
+        public virtual Size Size { get; set; }
+        public Point Location { get; set; }
+        [XmlIgnore]
+        public Color OutlineColor { get; set; }
 
-        protected Shape(int x, int y, int width, int height, Color color, float penWidth)
+        [XmlElement("OutlineColor")]
+        public string OutlineColorString
         {
-            X = x;
-            Y = y;
-            Width = width;
-            Height = height;
-            Color = color;
-            PenWidth = penWidth;
-            IsSelected = false;
+            get { return ColorTranslator.ToHtml(OutlineColor); }
+            set { OutlineColor = ColorTranslator.FromHtml(value); }
         }
 
-        public abstract void Draw(Graphics graphics);
-        public abstract bool ContainsPoint(Point point);
-        public virtual void Move(int deltaX, int deltaY)
+        [XmlIgnore]
+        public Color FillColor { get; set; }
+        [XmlElement("FillColor")]
+        public string FillColorString
         {
-            X += deltaX;
-            Y += deltaY;
+            get { return ColorTranslator.ToHtml(FillColor); }
+            set { FillColor = ColorTranslator.FromHtml(value); }
         }
+        public float OutlineWidth { get; set; }
+        public virtual GraphicsPath GetPath()
+        { 
+            return new GraphicsPath(); 
+        }
+        public virtual void Draw(Graphics g, Pen pen) { }
+        public virtual void Fill(Graphics g, Brush brush) { }
+        public virtual bool Contains(Point point)
+        {
+            return false;
+        }
+        public abstract object Clone();
+        public virtual double Perimeter() { return 0; }
+        public virtual double Area() { return 0; }
     }
 }

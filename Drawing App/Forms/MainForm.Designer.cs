@@ -35,34 +35,39 @@
             SaveMenu = new ToolStripMenuItem();
             OpenMenu = new ToolStripMenuItem();
             ToolMenu = new ToolStripMenuItem();
+            ColorPickerMenu = new ToolStripMenuItem();
             FillBucketMenu = new ToolStripMenuItem();
-            PencilMenu = new ToolStripMenuItem();
-            RotateReverseMenu = new ToolStripMenuItem();
-            RotateMenu = new ToolStripMenuItem();
-            EraserMenu = new ToolStripMenuItem();
             DeleteMenu = new ToolStripMenuItem();
-            shapesToolStripMenuItem = new ToolStripMenuItem();
+            MoveMenu = new ToolStripMenuItem();
+            PointerMenu = new ToolStripMenuItem();
+            ClearMenu = new ToolStripMenuItem();
+            ShapesMenu = new ToolStripMenuItem();
             LineMenu = new ToolStripMenuItem();
             CircleMenu = new ToolStripMenuItem();
             RectangleMenu = new ToolStripMenuItem();
             TriangleMenu = new ToolStripMenuItem();
-            RightTriangleMenu = new ToolStripMenuItem();
+            HelpMenu = new ToolStripMenuItem();
+            UndoMenu = new ToolStripMenuItem();
+            RedoMenu = new ToolStripMenuItem();
             Panel = new Panel();
+            panel5 = new Panel();
+            panel3 = new Panel();
+            Button_Pointer = new Button();
+            panel4 = new Panel();
+            TextBox_Width = new TextBox();
+            Label_Width = new Label();
             Button_Move = new Button();
             Button_Clear = new Button();
             Label_Colors = new Label();
             Label_Shapes = new Label();
             Label_Tools = new Label();
             Button_Delete = new Button();
-            Button_RotateReverseClock = new Button();
-            Button_RotateClock = new Button();
             panel2 = new Panel();
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            ShapesScrollMenu = new FlowLayoutPanel();
             Button_Line = new Button();
             Button_Circle = new Button();
             Button_Rectangle = new Button();
             Button_Triangle = new Button();
-            Button_RightTriangle = new Button();
             panel1 = new Panel();
             Button_PurpleTwo = new Button();
             Button_PurpleOne = new Button();
@@ -91,8 +96,6 @@
             Button_Orange = new Button();
             Button_White = new Button();
             Button_Black = new Button();
-            Button_Eraser = new Button();
-            Button_Pencil = new Button();
             Button_Fill = new Button();
             Button_Color = new Button();
             PictureBox_OutlineColor = new Button();
@@ -100,7 +103,7 @@
             toolTip1 = new ToolTip(components);
             MenuStrip.SuspendLayout();
             Panel.SuspendLayout();
-            flowLayoutPanel1.SuspendLayout();
+            ShapesScrollMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)PictureBox).BeginInit();
             SuspendLayout();
             // 
@@ -108,10 +111,10 @@
             // 
             MenuStrip.BackColor = Color.FromArgb(243, 243, 243);
             MenuStrip.ImageScalingSize = new Size(20, 20);
-            MenuStrip.Items.AddRange(new ToolStripItem[] { FileMenu, ToolMenu, shapesToolStripMenuItem });
+            MenuStrip.Items.AddRange(new ToolStripItem[] { FileMenu, ToolMenu, ShapesMenu, HelpMenu, UndoMenu, RedoMenu });
             MenuStrip.Location = new Point(0, 0);
             MenuStrip.Name = "MenuStrip";
-            MenuStrip.Size = new Size(1154, 28);
+            MenuStrip.Size = new Size(1153, 28);
             MenuStrip.TabIndex = 0;
             MenuStrip.Text = "MenuStrip";
             // 
@@ -140,111 +143,163 @@
             OpenMenu.ShortcutKeys = Keys.Control | Keys.O;
             OpenMenu.Size = new Size(189, 26);
             OpenMenu.Text = "Open";
+            OpenMenu.Click += OpenMenu_Click;
             // 
             // ToolMenu
             // 
-            ToolMenu.DropDownItems.AddRange(new ToolStripItem[] { FillBucketMenu, PencilMenu, RotateReverseMenu, RotateMenu, EraserMenu, DeleteMenu });
+            ToolMenu.DropDownItems.AddRange(new ToolStripItem[] { ColorPickerMenu, FillBucketMenu, DeleteMenu, MoveMenu, PointerMenu, ClearMenu });
             ToolMenu.Name = "ToolMenu";
             ToolMenu.Size = new Size(58, 24);
             ToolMenu.Text = "Tools";
+            // 
+            // ColorPickerMenu
+            // 
+            ColorPickerMenu.Image = Properties.Resources.Palette_icon_original1;
+            ColorPickerMenu.Name = "ColorPickerMenu";
+            ColorPickerMenu.ShortcutKeyDisplayString = "Ctrl + P";
+            ColorPickerMenu.ShortcutKeys = Keys.Control | Keys.P;
+            ColorPickerMenu.Size = new Size(233, 26);
+            ColorPickerMenu.Text = "Color Picker";
+            ColorPickerMenu.Click += Button_Color_Click;
             // 
             // FillBucketMenu
             // 
             FillBucketMenu.Image = (Image)resources.GetObject("FillBucketMenu.Image");
             FillBucketMenu.Name = "FillBucketMenu";
-            FillBucketMenu.Size = new Size(231, 26);
+            FillBucketMenu.ShortcutKeyDisplayString = "Ctrl + F";
+            FillBucketMenu.ShortcutKeys = Keys.Control | Keys.F;
+            FillBucketMenu.Size = new Size(233, 26);
             FillBucketMenu.Text = "Fill Bucket";
-            // 
-            // PencilMenu
-            // 
-            PencilMenu.Image = Properties.Resources.Pencil_icon_original;
-            PencilMenu.Name = "PencilMenu";
-            PencilMenu.Size = new Size(231, 26);
-            PencilMenu.Text = "Pencil";
-            // 
-            // RotateReverseMenu
-            // 
-            RotateReverseMenu.Image = (Image)resources.GetObject("RotateReverseMenu.Image");
-            RotateReverseMenu.Name = "RotateReverseMenu";
-            RotateReverseMenu.Size = new Size(231, 26);
-            RotateReverseMenu.Text = "Rotate Reverse Clock";
-            // 
-            // RotateMenu
-            // 
-            RotateMenu.Image = (Image)resources.GetObject("RotateMenu.Image");
-            RotateMenu.Name = "RotateMenu";
-            RotateMenu.Size = new Size(231, 26);
-            RotateMenu.Text = "Rotate Clock";
-            // 
-            // EraserMenu
-            // 
-            EraserMenu.Image = (Image)resources.GetObject("EraserMenu.Image");
-            EraserMenu.Name = "EraserMenu";
-            EraserMenu.Size = new Size(231, 26);
-            EraserMenu.Text = "Eraser";
+            FillBucketMenu.Click += Button_Fill_Click;
             // 
             // DeleteMenu
             // 
             DeleteMenu.Image = (Image)resources.GetObject("DeleteMenu.Image");
             DeleteMenu.Name = "DeleteMenu";
-            DeleteMenu.Size = new Size(231, 26);
+            DeleteMenu.ShortcutKeyDisplayString = "Del";
+            DeleteMenu.ShortcutKeys = Keys.Delete;
+            DeleteMenu.Size = new Size(233, 26);
             DeleteMenu.Text = "Delete";
+            DeleteMenu.Click += Button_Delete_Click;
             // 
-            // shapesToolStripMenuItem
+            // MoveMenu
             // 
-            shapesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { LineMenu, CircleMenu, RectangleMenu, TriangleMenu, RightTriangleMenu });
-            shapesToolStripMenuItem.Name = "shapesToolStripMenuItem";
-            shapesToolStripMenuItem.Size = new Size(70, 24);
-            shapesToolStripMenuItem.Text = "Shapes";
+            MoveMenu.Image = Properties.Resources.Move_icon_original;
+            MoveMenu.Name = "MoveMenu";
+            MoveMenu.ShortcutKeyDisplayString = "Ctrl + M";
+            MoveMenu.ShortcutKeys = Keys.Control | Keys.M;
+            MoveMenu.Size = new Size(233, 26);
+            MoveMenu.Text = "Move";
+            MoveMenu.Click += Button_Move_Click;
+            // 
+            // PointerMenu
+            // 
+            PointerMenu.Image = Properties.Resources.Pointer_icon_original;
+            PointerMenu.Name = "PointerMenu";
+            PointerMenu.ShortcutKeyDisplayString = "Ctrl + Alt + P";
+            PointerMenu.ShortcutKeys = Keys.Control | Keys.Alt | Keys.P;
+            PointerMenu.Size = new Size(233, 26);
+            PointerMenu.Text = "Pointer";
+            // 
+            // ClearMenu
+            // 
+            ClearMenu.Image = Properties.Resources.Clear_icon_original;
+            ClearMenu.Name = "ClearMenu";
+            ClearMenu.ShortcutKeyDisplayString = "Ctrl + Del";
+            ClearMenu.ShortcutKeys = Keys.Control | Keys.Delete;
+            ClearMenu.Size = new Size(233, 26);
+            ClearMenu.Text = "Clear";
+            ClearMenu.Click += Button_Clear_Click;
+            // 
+            // ShapesMenu
+            // 
+            ShapesMenu.DropDownItems.AddRange(new ToolStripItem[] { LineMenu, CircleMenu, RectangleMenu, TriangleMenu });
+            ShapesMenu.Name = "ShapesMenu";
+            ShapesMenu.Size = new Size(70, 24);
+            ShapesMenu.Text = "Shapes";
             // 
             // LineMenu
             // 
             LineMenu.Image = (Image)resources.GetObject("LineMenu.Image");
             LineMenu.Name = "LineMenu";
-            LineMenu.Size = new Size(184, 26);
+            LineMenu.ShortcutKeyDisplayString = "Crtl + L";
+            LineMenu.ShortcutKeys = Keys.Control | Keys.L;
+            LineMenu.Size = new Size(217, 26);
             LineMenu.Text = "Line";
+            LineMenu.Click += Button_Line_Click;
             // 
             // CircleMenu
             // 
             CircleMenu.Image = (Image)resources.GetObject("CircleMenu.Image");
             CircleMenu.Name = "CircleMenu";
-            CircleMenu.Size = new Size(184, 26);
+            CircleMenu.ShortcutKeyDisplayString = "Ctrl + C";
+            CircleMenu.ShortcutKeys = Keys.Control | Keys.C;
+            CircleMenu.Size = new Size(217, 26);
             CircleMenu.Text = "Circle";
+            CircleMenu.Click += Button_Circle_Click;
             // 
             // RectangleMenu
             // 
             RectangleMenu.Image = (Image)resources.GetObject("RectangleMenu.Image");
             RectangleMenu.Name = "RectangleMenu";
-            RectangleMenu.Size = new Size(184, 26);
+            RectangleMenu.ShortcutKeyDisplayString = "Ctrl + R";
+            RectangleMenu.ShortcutKeys = Keys.Control | Keys.R;
+            RectangleMenu.Size = new Size(217, 26);
             RectangleMenu.Text = "Rectangle";
+            RectangleMenu.Click += Button_Rectangle_Click;
             // 
             // TriangleMenu
             // 
             TriangleMenu.Image = (Image)resources.GetObject("TriangleMenu.Image");
             TriangleMenu.Name = "TriangleMenu";
-            TriangleMenu.Size = new Size(184, 26);
+            TriangleMenu.ShortcutKeyDisplayString = "Ctrl + T";
+            TriangleMenu.ShortcutKeys = Keys.Control | Keys.T;
+            TriangleMenu.Size = new Size(217, 26);
             TriangleMenu.Text = "Triangle";
+            TriangleMenu.Click += Button_Triangle_Click;
             // 
-            // RightTriangleMenu
+            // HelpMenu
             // 
-            RightTriangleMenu.Image = (Image)resources.GetObject("RightTriangleMenu.Image");
-            RightTriangleMenu.Name = "RightTriangleMenu";
-            RightTriangleMenu.Size = new Size(184, 26);
-            RightTriangleMenu.Text = "Right Triangle";
+            HelpMenu.Name = "HelpMenu";
+            HelpMenu.Size = new Size(55, 24);
+            HelpMenu.Text = "Help";
+            HelpMenu.Click += HelpMenu_Click;
+            HelpMenu.MouseEnter += HelpMenu_MouseEnter;
+            HelpMenu.MouseLeave += HelpMenu_MouseLeave;
+            // 
+            // UndoMenu
+            // 
+            UndoMenu.Image = Properties.Resources.Undo_icon_original;
+            UndoMenu.Name = "UndoMenu";
+            UndoMenu.ShortcutKeys = Keys.Control | Keys.Z;
+            UndoMenu.Size = new Size(34, 24);
+            UndoMenu.Click += UndoMenu_Click;
+            // 
+            // RedoMenu
+            // 
+            RedoMenu.Image = Properties.Resources.Redo_icon_original;
+            RedoMenu.Name = "RedoMenu";
+            RedoMenu.ShortcutKeys = Keys.Control | Keys.Y;
+            RedoMenu.Size = new Size(34, 24);
+            RedoMenu.Click += RedoMenu_Click;
             // 
             // Panel
             // 
             Panel.BackColor = Color.FromArgb(249, 249, 249);
+            Panel.Controls.Add(panel5);
+            Panel.Controls.Add(panel3);
+            Panel.Controls.Add(Button_Pointer);
+            Panel.Controls.Add(panel4);
+            Panel.Controls.Add(TextBox_Width);
+            Panel.Controls.Add(Label_Width);
             Panel.Controls.Add(Button_Move);
             Panel.Controls.Add(Button_Clear);
             Panel.Controls.Add(Label_Colors);
             Panel.Controls.Add(Label_Shapes);
             Panel.Controls.Add(Label_Tools);
             Panel.Controls.Add(Button_Delete);
-            Panel.Controls.Add(Button_RotateReverseClock);
-            Panel.Controls.Add(Button_RotateClock);
             Panel.Controls.Add(panel2);
-            Panel.Controls.Add(flowLayoutPanel1);
+            Panel.Controls.Add(ShapesScrollMenu);
             Panel.Controls.Add(panel1);
             Panel.Controls.Add(Button_PurpleTwo);
             Panel.Controls.Add(Button_PurpleOne);
@@ -273,16 +328,86 @@
             Panel.Controls.Add(Button_Orange);
             Panel.Controls.Add(Button_White);
             Panel.Controls.Add(Button_Black);
-            Panel.Controls.Add(Button_Eraser);
-            Panel.Controls.Add(Button_Pencil);
             Panel.Controls.Add(Button_Fill);
             Panel.Controls.Add(Button_Color);
             Panel.Controls.Add(PictureBox_OutlineColor);
             Panel.Dock = DockStyle.Top;
             Panel.Location = new Point(0, 28);
             Panel.Name = "Panel";
-            Panel.Size = new Size(1154, 145);
+            Panel.Size = new Size(1153, 145);
             Panel.TabIndex = 1;
+            // 
+            // panel5
+            // 
+            panel5.Anchor = AnchorStyles.None;
+            panel5.BackColor = Color.FromArgb(243, 243, 243);
+            panel5.Location = new Point(1149, 0);
+            panel5.Margin = new Padding(2);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(6, 148);
+            panel5.TabIndex = 40;
+            // 
+            // panel3
+            // 
+            panel3.Anchor = AnchorStyles.None;
+            panel3.BackColor = Color.FromArgb(243, 243, 243);
+            panel3.Location = new Point(-3, 0);
+            panel3.Margin = new Padding(2);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(5, 148);
+            panel3.TabIndex = 40;
+            // 
+            // Button_Pointer
+            // 
+            Button_Pointer.Anchor = AnchorStyles.None;
+            Button_Pointer.AutoSize = true;
+            Button_Pointer.Cursor = Cursors.Hand;
+            Button_Pointer.FlatAppearance.BorderColor = Color.FromArgb(249, 249, 249);
+            Button_Pointer.FlatAppearance.MouseDownBackColor = Color.Silver;
+            Button_Pointer.FlatAppearance.MouseOverBackColor = Color.LightGray;
+            Button_Pointer.FlatStyle = FlatStyle.Flat;
+            Button_Pointer.ForeColor = Color.White;
+            Button_Pointer.Image = Properties.Resources.Pointer_icon_40x40;
+            Button_Pointer.Location = new Point(88, 68);
+            Button_Pointer.Name = "Button_Pointer";
+            Button_Pointer.Size = new Size(48, 48);
+            Button_Pointer.TabIndex = 53;
+            Button_Pointer.TextAlign = ContentAlignment.BottomCenter;
+            toolTip1.SetToolTip(Button_Pointer, "Pointer");
+            Button_Pointer.UseVisualStyleBackColor = true;
+            Button_Pointer.Click += Button_Pointer_Click;
+            // 
+            // panel4
+            // 
+            panel4.Anchor = AnchorStyles.None;
+            panel4.BackColor = Color.FromArgb(243, 243, 243);
+            panel4.Location = new Point(462, 2);
+            panel4.Margin = new Padding(2);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(6, 148);
+            panel4.TabIndex = 40;
+            // 
+            // TextBox_Width
+            // 
+            TextBox_Width.Anchor = AnchorStyles.None;
+            TextBox_Width.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            TextBox_Width.Location = new Point(487, 47);
+            TextBox_Width.Name = "TextBox_Width";
+            TextBox_Width.Size = new Size(154, 34);
+            TextBox_Width.TabIndex = 52;
+            TextBox_Width.TextAlign = HorizontalAlignment.Center;
+            TextBox_Width.TextChanged += TextBox_Width_TextChanged;
+            // 
+            // Label_Width
+            // 
+            Label_Width.Anchor = AnchorStyles.None;
+            Label_Width.AutoSize = true;
+            Label_Width.ForeColor = Color.FromArgb(64, 64, 64);
+            Label_Width.Location = new Point(540, 119);
+            Label_Width.Name = "Label_Width";
+            Label_Width.Size = new Size(49, 20);
+            Label_Width.TabIndex = 51;
+            Label_Width.Text = "Width";
             // 
             // Button_Move
             // 
@@ -295,7 +420,7 @@
             Button_Move.FlatStyle = FlatStyle.Flat;
             Button_Move.ForeColor = Color.White;
             Button_Move.Image = (Image)resources.GetObject("Button_Move.Image");
-            Button_Move.Location = new Point(174, 14);
+            Button_Move.Location = new Point(88, 14);
             Button_Move.Name = "Button_Move";
             Button_Move.Size = new Size(48, 48);
             Button_Move.TabIndex = 49;
@@ -315,7 +440,7 @@
             Button_Clear.FlatStyle = FlatStyle.Flat;
             Button_Clear.ForeColor = Color.White;
             Button_Clear.Image = (Image)resources.GetObject("Button_Clear.Image");
-            Button_Clear.Location = new Point(174, 68);
+            Button_Clear.Location = new Point(157, 42);
             Button_Clear.Name = "Button_Clear";
             Button_Clear.Size = new Size(48, 48);
             Button_Clear.TabIndex = 48;
@@ -329,7 +454,7 @@
             Label_Colors.Anchor = AnchorStyles.None;
             Label_Colors.AutoSize = true;
             Label_Colors.ForeColor = Color.FromArgb(64, 64, 64);
-            Label_Colors.Location = new Point(885, 119);
+            Label_Colors.Location = new Point(884, 119);
             Label_Colors.Name = "Label_Colors";
             Label_Colors.Size = new Size(51, 20);
             Label_Colors.TabIndex = 46;
@@ -340,7 +465,7 @@
             Label_Shapes.Anchor = AnchorStyles.None;
             Label_Shapes.AutoSize = true;
             Label_Shapes.ForeColor = Color.FromArgb(64, 64, 64);
-            Label_Shapes.Location = new Point(413, 119);
+            Label_Shapes.Location = new Point(318, 119);
             Label_Shapes.Name = "Label_Shapes";
             Label_Shapes.Size = new Size(56, 20);
             Label_Shapes.TabIndex = 45;
@@ -351,7 +476,7 @@
             Label_Tools.Anchor = AnchorStyles.None;
             Label_Tools.AutoSize = true;
             Label_Tools.ForeColor = Color.FromArgb(64, 64, 64);
-            Label_Tools.Location = new Point(66, 119);
+            Label_Tools.Location = new Point(91, 119);
             Label_Tools.Name = "Label_Tools";
             Label_Tools.Size = new Size(44, 20);
             Label_Tools.TabIndex = 3;
@@ -368,7 +493,7 @@
             Button_Delete.FlatStyle = FlatStyle.Flat;
             Button_Delete.ForeColor = Color.White;
             Button_Delete.Image = (Image)resources.GetObject("Button_Delete.Image");
-            Button_Delete.Location = new Point(120, 68);
+            Button_Delete.Location = new Point(21, 68);
             Button_Delete.Name = "Button_Delete";
             Button_Delete.Size = new Size(48, 48);
             Button_Delete.TabIndex = 44;
@@ -377,67 +502,28 @@
             Button_Delete.UseVisualStyleBackColor = true;
             Button_Delete.Click += Button_Delete_Click;
             // 
-            // Button_RotateReverseClock
-            // 
-            Button_RotateReverseClock.Anchor = AnchorStyles.None;
-            Button_RotateReverseClock.AutoSize = true;
-            Button_RotateReverseClock.Cursor = Cursors.Hand;
-            Button_RotateReverseClock.FlatAppearance.BorderColor = Color.FromArgb(249, 249, 249);
-            Button_RotateReverseClock.FlatAppearance.MouseDownBackColor = Color.Silver;
-            Button_RotateReverseClock.FlatAppearance.MouseOverBackColor = Color.LightGray;
-            Button_RotateReverseClock.FlatStyle = FlatStyle.Flat;
-            Button_RotateReverseClock.ForeColor = Color.White;
-            Button_RotateReverseClock.Image = (Image)resources.GetObject("Button_RotateReverseClock.Image");
-            Button_RotateReverseClock.Location = new Point(66, 14);
-            Button_RotateReverseClock.Name = "Button_RotateReverseClock";
-            Button_RotateReverseClock.Size = new Size(48, 48);
-            Button_RotateReverseClock.TabIndex = 43;
-            Button_RotateReverseClock.TextAlign = ContentAlignment.BottomCenter;
-            toolTip1.SetToolTip(Button_RotateReverseClock, "Rotate Reverse Clock");
-            Button_RotateReverseClock.UseVisualStyleBackColor = true;
-            // 
-            // Button_RotateClock
-            // 
-            Button_RotateClock.Anchor = AnchorStyles.None;
-            Button_RotateClock.AutoSize = true;
-            Button_RotateClock.Cursor = Cursors.Hand;
-            Button_RotateClock.FlatAppearance.BorderColor = Color.FromArgb(249, 249, 249);
-            Button_RotateClock.FlatAppearance.MouseDownBackColor = Color.Silver;
-            Button_RotateClock.FlatAppearance.MouseOverBackColor = Color.LightGray;
-            Button_RotateClock.FlatStyle = FlatStyle.Flat;
-            Button_RotateClock.ForeColor = Color.White;
-            Button_RotateClock.Image = (Image)resources.GetObject("Button_RotateClock.Image");
-            Button_RotateClock.Location = new Point(66, 68);
-            Button_RotateClock.Name = "Button_RotateClock";
-            Button_RotateClock.Size = new Size(48, 48);
-            Button_RotateClock.TabIndex = 42;
-            Button_RotateClock.TextAlign = ContentAlignment.BottomCenter;
-            toolTip1.SetToolTip(Button_RotateClock, "Rotate Clock");
-            Button_RotateClock.UseVisualStyleBackColor = true;
-            // 
             // panel2
             // 
             panel2.Anchor = AnchorStyles.None;
             panel2.BackColor = Color.FromArgb(243, 243, 243);
-            panel2.Location = new Point(647, 0);
+            panel2.Location = new Point(661, 0);
             panel2.Margin = new Padding(2);
             panel2.Name = "panel2";
             panel2.Size = new Size(6, 148);
             panel2.TabIndex = 39;
             // 
-            // flowLayoutPanel1
+            // ShapesScrollMenu
             // 
-            flowLayoutPanel1.Anchor = AnchorStyles.None;
-            flowLayoutPanel1.AutoScroll = true;
-            flowLayoutPanel1.Controls.Add(Button_Line);
-            flowLayoutPanel1.Controls.Add(Button_Circle);
-            flowLayoutPanel1.Controls.Add(Button_Rectangle);
-            flowLayoutPanel1.Controls.Add(Button_Triangle);
-            flowLayoutPanel1.Controls.Add(Button_RightTriangle);
-            flowLayoutPanel1.Location = new Point(286, 14);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(231, 92);
-            flowLayoutPanel1.TabIndex = 37;
+            ShapesScrollMenu.Anchor = AnchorStyles.None;
+            ShapesScrollMenu.AutoScroll = true;
+            ShapesScrollMenu.Controls.Add(Button_Line);
+            ShapesScrollMenu.Controls.Add(Button_Circle);
+            ShapesScrollMenu.Controls.Add(Button_Rectangle);
+            ShapesScrollMenu.Controls.Add(Button_Triangle);
+            ShapesScrollMenu.Location = new Point(252, 14);
+            ShapesScrollMenu.Name = "ShapesScrollMenu";
+            ShapesScrollMenu.Size = new Size(186, 102);
+            ShapesScrollMenu.TabIndex = 37;
             // 
             // Button_Line
             // 
@@ -490,7 +576,7 @@
             Button_Rectangle.FlatStyle = FlatStyle.Flat;
             Button_Rectangle.ForeColor = Color.FromArgb(249, 249, 249);
             Button_Rectangle.Image = (Image)resources.GetObject("Button_Rectangle.Image");
-            Button_Rectangle.Location = new Point(137, 3);
+            Button_Rectangle.Location = new Point(3, 67);
             Button_Rectangle.Name = "Button_Rectangle";
             Button_Rectangle.Size = new Size(61, 58);
             Button_Rectangle.TabIndex = 7;
@@ -510,7 +596,7 @@
             Button_Triangle.FlatStyle = FlatStyle.Flat;
             Button_Triangle.ForeColor = Color.White;
             Button_Triangle.Image = (Image)resources.GetObject("Button_Triangle.Image");
-            Button_Triangle.Location = new Point(3, 67);
+            Button_Triangle.Location = new Point(70, 67);
             Button_Triangle.Name = "Button_Triangle";
             Button_Triangle.Size = new Size(61, 58);
             Button_Triangle.TabIndex = 8;
@@ -519,30 +605,11 @@
             Button_Triangle.UseVisualStyleBackColor = true;
             Button_Triangle.Click += Button_Triangle_Click;
             // 
-            // Button_RightTriangle
-            // 
-            Button_RightTriangle.Anchor = AnchorStyles.None;
-            Button_RightTriangle.AutoSize = true;
-            Button_RightTriangle.Cursor = Cursors.Hand;
-            Button_RightTriangle.FlatAppearance.BorderColor = Color.FromArgb(249, 249, 249);
-            Button_RightTriangle.FlatAppearance.MouseDownBackColor = Color.Silver;
-            Button_RightTriangle.FlatAppearance.MouseOverBackColor = Color.LightGray;
-            Button_RightTriangle.FlatStyle = FlatStyle.Flat;
-            Button_RightTriangle.ForeColor = Color.FromArgb(249, 249, 249);
-            Button_RightTriangle.Image = (Image)resources.GetObject("Button_RightTriangle.Image");
-            Button_RightTriangle.Location = new Point(70, 67);
-            Button_RightTriangle.Name = "Button_RightTriangle";
-            Button_RightTriangle.Size = new Size(61, 59);
-            Button_RightTriangle.TabIndex = 9;
-            Button_RightTriangle.TextAlign = ContentAlignment.BottomCenter;
-            toolTip1.SetToolTip(Button_RightTriangle, "Right Triangle");
-            Button_RightTriangle.UseVisualStyleBackColor = true;
-            // 
             // panel1
             // 
             panel1.Anchor = AnchorStyles.None;
             panel1.BackColor = Color.FromArgb(243, 243, 243);
-            panel1.Location = new Point(242, 0);
+            panel1.Location = new Point(225, 0);
             panel1.Margin = new Padding(2);
             panel1.Name = "panel1";
             panel1.Size = new Size(6, 148);
@@ -557,12 +624,13 @@
             Button_PurpleTwo.FlatAppearance.BorderSize = 0;
             Button_PurpleTwo.FlatStyle = FlatStyle.Popup;
             Button_PurpleTwo.ForeColor = Color.Transparent;
-            Button_PurpleTwo.Location = new Point(1057, 78);
+            Button_PurpleTwo.Location = new Point(1056, 78);
             Button_PurpleTwo.Name = "Button_PurpleTwo";
             Button_PurpleTwo.Size = new Size(35, 25);
             Button_PurpleTwo.TabIndex = 36;
+            Button_PurpleTwo.Tag = "ColorButton";
             Button_PurpleTwo.UseVisualStyleBackColor = false;
-            Button_PurpleTwo.Click += Button_PurpleTwo_Click;
+            Button_PurpleTwo.Click += Button_Colored_Click;
             // 
             // Button_PurpleOne
             // 
@@ -573,12 +641,13 @@
             Button_PurpleOne.FlatAppearance.BorderSize = 0;
             Button_PurpleOne.FlatStyle = FlatStyle.Popup;
             Button_PurpleOne.ForeColor = Color.Transparent;
-            Button_PurpleOne.Location = new Point(1057, 47);
+            Button_PurpleOne.Location = new Point(1056, 47);
             Button_PurpleOne.Name = "Button_PurpleOne";
             Button_PurpleOne.Size = new Size(35, 25);
             Button_PurpleOne.TabIndex = 35;
+            Button_PurpleOne.Tag = "ColorButton";
             Button_PurpleOne.UseVisualStyleBackColor = false;
-            Button_PurpleOne.Click += Button_PurpleOne_Click;
+            Button_PurpleOne.Click += Button_Colored_Click;
             // 
             // Button_BlueTwo
             // 
@@ -589,12 +658,13 @@
             Button_BlueTwo.FlatAppearance.BorderSize = 0;
             Button_BlueTwo.FlatStyle = FlatStyle.Popup;
             Button_BlueTwo.ForeColor = Color.Transparent;
-            Button_BlueTwo.Location = new Point(1098, 78);
+            Button_BlueTwo.Location = new Point(1097, 78);
             Button_BlueTwo.Name = "Button_BlueTwo";
             Button_BlueTwo.Size = new Size(35, 25);
             Button_BlueTwo.TabIndex = 34;
+            Button_BlueTwo.Tag = "ColorButton";
             Button_BlueTwo.UseVisualStyleBackColor = false;
-            Button_BlueTwo.Click += Button_BlueTwo_Click;
+            Button_BlueTwo.Click += Button_Colored_Click;
             // 
             // Button_BlueOne
             // 
@@ -605,12 +675,13 @@
             Button_BlueOne.FlatAppearance.BorderSize = 0;
             Button_BlueOne.FlatStyle = FlatStyle.Popup;
             Button_BlueOne.ForeColor = Color.Transparent;
-            Button_BlueOne.Location = new Point(1098, 47);
+            Button_BlueOne.Location = new Point(1097, 47);
             Button_BlueOne.Name = "Button_BlueOne";
             Button_BlueOne.Size = new Size(35, 25);
             Button_BlueOne.TabIndex = 33;
+            Button_BlueOne.Tag = "ColorButton";
             Button_BlueOne.UseVisualStyleBackColor = false;
-            Button_BlueOne.Click += Button_BlueOne_Click;
+            Button_BlueOne.Click += Button_Colored_Click;
             // 
             // Button_YellowTwo
             // 
@@ -621,12 +692,13 @@
             Button_YellowTwo.FlatAppearance.BorderSize = 0;
             Button_YellowTwo.FlatStyle = FlatStyle.Popup;
             Button_YellowTwo.ForeColor = Color.Transparent;
-            Button_YellowTwo.Location = new Point(1016, 78);
+            Button_YellowTwo.Location = new Point(1015, 78);
             Button_YellowTwo.Name = "Button_YellowTwo";
             Button_YellowTwo.Size = new Size(35, 25);
             Button_YellowTwo.TabIndex = 32;
+            Button_YellowTwo.Tag = "ColorButton";
             Button_YellowTwo.UseVisualStyleBackColor = false;
-            Button_YellowTwo.Click += Button_YellowTwo_Click;
+            Button_YellowTwo.Click += Button_Colored_Click;
             // 
             // Button_YellowOne
             // 
@@ -637,12 +709,13 @@
             Button_YellowOne.FlatAppearance.BorderSize = 0;
             Button_YellowOne.FlatStyle = FlatStyle.Popup;
             Button_YellowOne.ForeColor = Color.Transparent;
-            Button_YellowOne.Location = new Point(1016, 47);
+            Button_YellowOne.Location = new Point(1015, 47);
             Button_YellowOne.Name = "Button_YellowOne";
             Button_YellowOne.Size = new Size(35, 25);
             Button_YellowOne.TabIndex = 31;
+            Button_YellowOne.Tag = "ColorButton";
             Button_YellowOne.UseVisualStyleBackColor = false;
-            Button_YellowOne.Click += Button_YellowOne_Click;
+            Button_YellowOne.Click += Button_Colored_Click;
             // 
             // Button_Blue
             // 
@@ -653,13 +726,14 @@
             Button_Blue.FlatAppearance.BorderSize = 0;
             Button_Blue.FlatStyle = FlatStyle.Popup;
             Button_Blue.ForeColor = Color.Transparent;
-            Button_Blue.Location = new Point(1098, 16);
+            Button_Blue.Location = new Point(1097, 16);
             Button_Blue.Name = "Button_Blue";
             Button_Blue.Size = new Size(35, 25);
             Button_Blue.TabIndex = 30;
+            Button_Blue.Tag = "ColorButton";
             toolTip1.SetToolTip(Button_Blue, "Blue");
             Button_Blue.UseVisualStyleBackColor = false;
-            Button_Blue.Click += Button_Blue_Click;
+            Button_Blue.Click += Button_Colored_Click;
             // 
             // Button_Purple
             // 
@@ -670,13 +744,14 @@
             Button_Purple.FlatAppearance.BorderSize = 0;
             Button_Purple.FlatStyle = FlatStyle.Popup;
             Button_Purple.ForeColor = Color.Transparent;
-            Button_Purple.Location = new Point(1057, 16);
+            Button_Purple.Location = new Point(1056, 16);
             Button_Purple.Name = "Button_Purple";
             Button_Purple.Size = new Size(35, 25);
             Button_Purple.TabIndex = 29;
+            Button_Purple.Tag = "ColorButton";
             toolTip1.SetToolTip(Button_Purple, "Purple");
             Button_Purple.UseVisualStyleBackColor = false;
-            Button_Purple.Click += Button_Purple_Click;
+            Button_Purple.Click += Button_Colored_Click;
             // 
             // Button_Yellow
             // 
@@ -687,13 +762,14 @@
             Button_Yellow.FlatAppearance.BorderSize = 0;
             Button_Yellow.FlatStyle = FlatStyle.Popup;
             Button_Yellow.ForeColor = Color.Transparent;
-            Button_Yellow.Location = new Point(1016, 16);
+            Button_Yellow.Location = new Point(1015, 16);
             Button_Yellow.Name = "Button_Yellow";
             Button_Yellow.Size = new Size(35, 25);
             Button_Yellow.TabIndex = 28;
+            Button_Yellow.Tag = "ColorButton";
             toolTip1.SetToolTip(Button_Yellow, "Yellow");
             Button_Yellow.UseVisualStyleBackColor = false;
-            Button_Yellow.Click += Button_Yellow_Click;
+            Button_Yellow.Click += Button_Colored_Click;
             // 
             // Button_RedTwo
             // 
@@ -704,12 +780,13 @@
             Button_RedTwo.FlatAppearance.BorderSize = 0;
             Button_RedTwo.FlatStyle = FlatStyle.Popup;
             Button_RedTwo.ForeColor = Color.Transparent;
-            Button_RedTwo.Location = new Point(975, 78);
+            Button_RedTwo.Location = new Point(974, 78);
             Button_RedTwo.Name = "Button_RedTwo";
             Button_RedTwo.Size = new Size(35, 25);
             Button_RedTwo.TabIndex = 27;
+            Button_RedTwo.Tag = "ColorButton";
             Button_RedTwo.UseVisualStyleBackColor = false;
-            Button_RedTwo.Click += Button_RedTwo_Click;
+            Button_RedTwo.Click += Button_Colored_Click;
             // 
             // Button_RedOne
             // 
@@ -720,12 +797,13 @@
             Button_RedOne.FlatAppearance.BorderSize = 0;
             Button_RedOne.FlatStyle = FlatStyle.Popup;
             Button_RedOne.ForeColor = Color.Transparent;
-            Button_RedOne.Location = new Point(975, 47);
+            Button_RedOne.Location = new Point(974, 47);
             Button_RedOne.Name = "Button_RedOne";
             Button_RedOne.Size = new Size(35, 25);
             Button_RedOne.TabIndex = 26;
+            Button_RedOne.Tag = "ColorButton";
             Button_RedOne.UseVisualStyleBackColor = false;
-            Button_RedOne.Click += Button_RedOne_Click;
+            Button_RedOne.Click += Button_Colored_Click;
             // 
             // Button_Red
             // 
@@ -736,13 +814,14 @@
             Button_Red.FlatAppearance.BorderSize = 0;
             Button_Red.FlatStyle = FlatStyle.Popup;
             Button_Red.ForeColor = Color.Transparent;
-            Button_Red.Location = new Point(975, 16);
+            Button_Red.Location = new Point(974, 16);
             Button_Red.Name = "Button_Red";
             Button_Red.Size = new Size(35, 25);
             Button_Red.TabIndex = 23;
+            Button_Red.Tag = "ColorButton";
             toolTip1.SetToolTip(Button_Red, "Red");
             Button_Red.UseVisualStyleBackColor = false;
-            Button_Red.Click += Button_Red_Click;
+            Button_Red.Click += Button_Colored_Click;
             // 
             // Button_BrownTwo
             // 
@@ -753,12 +832,13 @@
             Button_BrownTwo.FlatAppearance.BorderSize = 0;
             Button_BrownTwo.FlatStyle = FlatStyle.Popup;
             Button_BrownTwo.ForeColor = Color.Transparent;
-            Button_BrownTwo.Location = new Point(934, 78);
+            Button_BrownTwo.Location = new Point(933, 78);
             Button_BrownTwo.Name = "Button_BrownTwo";
             Button_BrownTwo.Size = new Size(35, 25);
             Button_BrownTwo.TabIndex = 21;
+            Button_BrownTwo.Tag = "ColorButton";
             Button_BrownTwo.UseVisualStyleBackColor = false;
-            Button_BrownTwo.Click += Button_BrownTwo_Click;
+            Button_BrownTwo.Click += Button_Colored_Click;
             // 
             // Button_GreenTwo
             // 
@@ -769,12 +849,13 @@
             Button_GreenTwo.FlatAppearance.BorderSize = 0;
             Button_GreenTwo.FlatStyle = FlatStyle.Popup;
             Button_GreenTwo.ForeColor = Color.Transparent;
-            Button_GreenTwo.Location = new Point(893, 78);
+            Button_GreenTwo.Location = new Point(892, 78);
             Button_GreenTwo.Name = "Button_GreenTwo";
             Button_GreenTwo.Size = new Size(35, 25);
             Button_GreenTwo.TabIndex = 20;
+            Button_GreenTwo.Tag = "ColorButton";
             Button_GreenTwo.UseVisualStyleBackColor = false;
-            Button_GreenTwo.Click += Button_GreenTwo_Click;
+            Button_GreenTwo.Click += Button_Colored_Click;
             // 
             // Button_BrownOne
             // 
@@ -785,12 +866,13 @@
             Button_BrownOne.FlatAppearance.BorderSize = 0;
             Button_BrownOne.FlatStyle = FlatStyle.Popup;
             Button_BrownOne.ForeColor = Color.Transparent;
-            Button_BrownOne.Location = new Point(934, 47);
+            Button_BrownOne.Location = new Point(933, 47);
             Button_BrownOne.Name = "Button_BrownOne";
             Button_BrownOne.Size = new Size(35, 25);
             Button_BrownOne.TabIndex = 19;
+            Button_BrownOne.Tag = "ColorButton";
             Button_BrownOne.UseVisualStyleBackColor = false;
-            Button_BrownOne.Click += Button_BrownOne_Click;
+            Button_BrownOne.Click += Button_Colored_Click;
             // 
             // Button_GreenOne
             // 
@@ -801,12 +883,13 @@
             Button_GreenOne.FlatAppearance.BorderSize = 0;
             Button_GreenOne.FlatStyle = FlatStyle.Popup;
             Button_GreenOne.ForeColor = Color.Transparent;
-            Button_GreenOne.Location = new Point(893, 47);
+            Button_GreenOne.Location = new Point(892, 47);
             Button_GreenOne.Name = "Button_GreenOne";
             Button_GreenOne.Size = new Size(35, 25);
             Button_GreenOne.TabIndex = 18;
+            Button_GreenOne.Tag = "ColorButton";
             Button_GreenOne.UseVisualStyleBackColor = false;
-            Button_GreenOne.Click += Button_GreenOne_Click;
+            Button_GreenOne.Click += Button_Colored_Click;
             // 
             // Button_OrangeTwo
             // 
@@ -817,12 +900,13 @@
             Button_OrangeTwo.FlatAppearance.BorderSize = 0;
             Button_OrangeTwo.FlatStyle = FlatStyle.Popup;
             Button_OrangeTwo.ForeColor = Color.Transparent;
-            Button_OrangeTwo.Location = new Point(852, 78);
+            Button_OrangeTwo.Location = new Point(851, 78);
             Button_OrangeTwo.Name = "Button_OrangeTwo";
             Button_OrangeTwo.Size = new Size(35, 25);
             Button_OrangeTwo.TabIndex = 17;
+            Button_OrangeTwo.Tag = "ColorButton";
             Button_OrangeTwo.UseVisualStyleBackColor = false;
-            Button_OrangeTwo.Click += Button_OrangeTwo_Click;
+            Button_OrangeTwo.Click += Button_Colored_Click;
             // 
             // Button_WhiteTwo
             // 
@@ -833,12 +917,13 @@
             Button_WhiteTwo.FlatAppearance.BorderSize = 0;
             Button_WhiteTwo.FlatStyle = FlatStyle.Popup;
             Button_WhiteTwo.ForeColor = Color.Transparent;
-            Button_WhiteTwo.Location = new Point(811, 78);
+            Button_WhiteTwo.Location = new Point(810, 78);
             Button_WhiteTwo.Name = "Button_WhiteTwo";
             Button_WhiteTwo.Size = new Size(35, 25);
             Button_WhiteTwo.TabIndex = 16;
+            Button_WhiteTwo.Tag = "ColorButton";
             Button_WhiteTwo.UseVisualStyleBackColor = false;
-            Button_WhiteTwo.Click += Button_WhiteTwo_Click;
+            Button_WhiteTwo.Click += Button_Colored_Click;
             // 
             // Button_WhiteOne
             // 
@@ -849,12 +934,13 @@
             Button_WhiteOne.FlatAppearance.BorderSize = 0;
             Button_WhiteOne.FlatStyle = FlatStyle.Popup;
             Button_WhiteOne.ForeColor = Color.Transparent;
-            Button_WhiteOne.Location = new Point(811, 47);
+            Button_WhiteOne.Location = new Point(810, 47);
             Button_WhiteOne.Name = "Button_WhiteOne";
             Button_WhiteOne.Size = new Size(35, 25);
             Button_WhiteOne.TabIndex = 15;
+            Button_WhiteOne.Tag = "ColorButton";
             Button_WhiteOne.UseVisualStyleBackColor = false;
-            Button_WhiteOne.Click += Button_WhiteOne_Click;
+            Button_WhiteOne.Click += Button_Colored_Click;
             // 
             // Button_BlackTwo
             // 
@@ -865,12 +951,13 @@
             Button_BlackTwo.FlatAppearance.BorderSize = 0;
             Button_BlackTwo.FlatStyle = FlatStyle.Popup;
             Button_BlackTwo.ForeColor = Color.Transparent;
-            Button_BlackTwo.Location = new Point(770, 78);
+            Button_BlackTwo.Location = new Point(769, 78);
             Button_BlackTwo.Name = "Button_BlackTwo";
             Button_BlackTwo.Size = new Size(35, 25);
             Button_BlackTwo.TabIndex = 14;
+            Button_BlackTwo.Tag = "ColorButton";
             Button_BlackTwo.UseVisualStyleBackColor = false;
-            Button_BlackTwo.Click += Button_BlackTwo_Click;
+            Button_BlackTwo.Click += Button_Colored_Click;
             // 
             // Button_BlackOne
             // 
@@ -881,12 +968,13 @@
             Button_BlackOne.FlatAppearance.BorderSize = 0;
             Button_BlackOne.FlatStyle = FlatStyle.Popup;
             Button_BlackOne.ForeColor = Color.Transparent;
-            Button_BlackOne.Location = new Point(770, 47);
+            Button_BlackOne.Location = new Point(769, 47);
             Button_BlackOne.Name = "Button_BlackOne";
             Button_BlackOne.Size = new Size(35, 25);
             Button_BlackOne.TabIndex = 13;
+            Button_BlackOne.Tag = "ColorButton";
             Button_BlackOne.UseVisualStyleBackColor = false;
-            Button_BlackOne.Click += Button_BlackOne_Click;
+            Button_BlackOne.Click += Button_Colored_Click;
             // 
             // Button_OrangeOne
             // 
@@ -897,12 +985,13 @@
             Button_OrangeOne.FlatAppearance.BorderSize = 0;
             Button_OrangeOne.FlatStyle = FlatStyle.Popup;
             Button_OrangeOne.ForeColor = Color.Transparent;
-            Button_OrangeOne.Location = new Point(852, 47);
+            Button_OrangeOne.Location = new Point(851, 47);
             Button_OrangeOne.Name = "Button_OrangeOne";
             Button_OrangeOne.Size = new Size(35, 25);
             Button_OrangeOne.TabIndex = 12;
+            Button_OrangeOne.Tag = "ColorButton";
             Button_OrangeOne.UseVisualStyleBackColor = false;
-            Button_OrangeOne.Click += Button_OrangeOne_Click;
+            Button_OrangeOne.Click += Button_Colored_Click;
             // 
             // Button_Brown
             // 
@@ -913,13 +1002,14 @@
             Button_Brown.FlatAppearance.BorderSize = 0;
             Button_Brown.FlatStyle = FlatStyle.Popup;
             Button_Brown.ForeColor = Color.Transparent;
-            Button_Brown.Location = new Point(934, 16);
+            Button_Brown.Location = new Point(933, 16);
             Button_Brown.Name = "Button_Brown";
             Button_Brown.Size = new Size(35, 25);
             Button_Brown.TabIndex = 11;
+            Button_Brown.Tag = "ColorButton";
             toolTip1.SetToolTip(Button_Brown, "Light Brown");
             Button_Brown.UseVisualStyleBackColor = false;
-            Button_Brown.Click += Button_Brown_Click;
+            Button_Brown.Click += Button_Colored_Click;
             // 
             // Button_Green
             // 
@@ -930,13 +1020,14 @@
             Button_Green.FlatAppearance.BorderSize = 0;
             Button_Green.FlatStyle = FlatStyle.Popup;
             Button_Green.ForeColor = Color.Transparent;
-            Button_Green.Location = new Point(893, 16);
+            Button_Green.Location = new Point(892, 16);
             Button_Green.Name = "Button_Green";
             Button_Green.Size = new Size(35, 25);
             Button_Green.TabIndex = 10;
+            Button_Green.Tag = "ColorButton";
             toolTip1.SetToolTip(Button_Green, "Green");
             Button_Green.UseVisualStyleBackColor = false;
-            Button_Green.Click += Button_Green_Click;
+            Button_Green.Click += Button_Colored_Click;
             // 
             // Button_Orange
             // 
@@ -947,13 +1038,14 @@
             Button_Orange.FlatAppearance.BorderSize = 0;
             Button_Orange.FlatStyle = FlatStyle.Popup;
             Button_Orange.ForeColor = Color.Transparent;
-            Button_Orange.Location = new Point(852, 16);
+            Button_Orange.Location = new Point(851, 16);
             Button_Orange.Name = "Button_Orange";
             Button_Orange.Size = new Size(35, 25);
             Button_Orange.TabIndex = 9;
+            Button_Orange.Tag = "ColorButton";
             toolTip1.SetToolTip(Button_Orange, "Orange");
             Button_Orange.UseVisualStyleBackColor = false;
-            Button_Orange.Click += Button_Orange_Click;
+            Button_Orange.Click += Button_Colored_Click;
             // 
             // Button_White
             // 
@@ -964,13 +1056,14 @@
             Button_White.FlatAppearance.BorderSize = 0;
             Button_White.FlatStyle = FlatStyle.Popup;
             Button_White.ForeColor = Color.Transparent;
-            Button_White.Location = new Point(811, 16);
+            Button_White.Location = new Point(810, 16);
             Button_White.Name = "Button_White";
             Button_White.Size = new Size(35, 25);
             Button_White.TabIndex = 8;
+            Button_White.Tag = "ColorButton";
             toolTip1.SetToolTip(Button_White, "White");
             Button_White.UseVisualStyleBackColor = false;
-            Button_White.Click += Button_White_Click;
+            Button_White.Click += Button_Colored_Click;
             // 
             // Button_Black
             // 
@@ -981,53 +1074,14 @@
             Button_Black.FlatAppearance.BorderSize = 0;
             Button_Black.FlatStyle = FlatStyle.Popup;
             Button_Black.ForeColor = Color.Transparent;
-            Button_Black.Location = new Point(770, 16);
+            Button_Black.Location = new Point(769, 16);
             Button_Black.Name = "Button_Black";
             Button_Black.Size = new Size(35, 25);
             Button_Black.TabIndex = 8;
+            Button_Black.Tag = "ColorButton";
             toolTip1.SetToolTip(Button_Black, "Black");
             Button_Black.UseVisualStyleBackColor = false;
-            Button_Black.Click += Button_Black_Click;
-            // 
-            // Button_Eraser
-            // 
-            Button_Eraser.Anchor = AnchorStyles.None;
-            Button_Eraser.AutoSize = true;
-            Button_Eraser.Cursor = Cursors.Hand;
-            Button_Eraser.FlatAppearance.BorderColor = Color.FromArgb(249, 249, 249);
-            Button_Eraser.FlatAppearance.MouseDownBackColor = Color.Silver;
-            Button_Eraser.FlatAppearance.MouseOverBackColor = Color.LightGray;
-            Button_Eraser.FlatStyle = FlatStyle.Flat;
-            Button_Eraser.ForeColor = Color.White;
-            Button_Eraser.Image = (Image)resources.GetObject("Button_Eraser.Image");
-            Button_Eraser.Location = new Point(120, 14);
-            Button_Eraser.Name = "Button_Eraser";
-            Button_Eraser.Size = new Size(48, 48);
-            Button_Eraser.TabIndex = 4;
-            Button_Eraser.TextAlign = ContentAlignment.BottomCenter;
-            toolTip1.SetToolTip(Button_Eraser, "Eraser");
-            Button_Eraser.UseVisualStyleBackColor = true;
-            Button_Eraser.Click += Button_Eraser_Click;
-            // 
-            // Button_Pencil
-            // 
-            Button_Pencil.Anchor = AnchorStyles.None;
-            Button_Pencil.AutoSize = true;
-            Button_Pencil.Cursor = Cursors.Hand;
-            Button_Pencil.FlatAppearance.BorderColor = Color.FromArgb(249, 249, 249);
-            Button_Pencil.FlatAppearance.MouseDownBackColor = Color.Silver;
-            Button_Pencil.FlatAppearance.MouseOverBackColor = Color.LightGray;
-            Button_Pencil.FlatStyle = FlatStyle.Flat;
-            Button_Pencil.ForeColor = Color.White;
-            Button_Pencil.Image = (Image)resources.GetObject("Button_Pencil.Image");
-            Button_Pencil.Location = new Point(12, 68);
-            Button_Pencil.Name = "Button_Pencil";
-            Button_Pencil.Size = new Size(48, 48);
-            Button_Pencil.TabIndex = 3;
-            Button_Pencil.TextAlign = ContentAlignment.BottomCenter;
-            toolTip1.SetToolTip(Button_Pencil, "Pencil");
-            Button_Pencil.UseVisualStyleBackColor = true;
-            Button_Pencil.Click += Button_Pencil_Click;
+            Button_Black.Click += Button_Colored_Click;
             // 
             // Button_Fill
             // 
@@ -1040,7 +1094,7 @@
             Button_Fill.FlatStyle = FlatStyle.Flat;
             Button_Fill.ForeColor = Color.Black;
             Button_Fill.Image = (Image)resources.GetObject("Button_Fill.Image");
-            Button_Fill.Location = new Point(12, 14);
+            Button_Fill.Location = new Point(21, 14);
             Button_Fill.Name = "Button_Fill";
             Button_Fill.Size = new Size(48, 48);
             Button_Fill.TabIndex = 2;
@@ -1061,7 +1115,7 @@
             Button_Color.FlatStyle = FlatStyle.Flat;
             Button_Color.ForeColor = Color.FromArgb(249, 249, 249);
             Button_Color.Image = (Image)resources.GetObject("Button_Color.Image");
-            Button_Color.Location = new Point(686, 82);
+            Button_Color.Location = new Point(685, 82);
             Button_Color.Name = "Button_Color";
             Button_Color.Size = new Size(58, 58);
             Button_Color.TabIndex = 1;
@@ -1077,7 +1131,7 @@
             PictureBox_OutlineColor.BackColor = Color.Black;
             PictureBox_OutlineColor.Enabled = false;
             PictureBox_OutlineColor.FlatAppearance.BorderSize = 3;
-            PictureBox_OutlineColor.Location = new Point(686, 14);
+            PictureBox_OutlineColor.Location = new Point(685, 14);
             PictureBox_OutlineColor.Margin = new Padding(4);
             PictureBox_OutlineColor.Name = "PictureBox_OutlineColor";
             PictureBox_OutlineColor.Size = new Size(60, 58);
@@ -1087,17 +1141,18 @@
             // 
             // PictureBox
             // 
-            PictureBox.Anchor = AnchorStyles.None;
+            PictureBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             PictureBox.BackColor = Color.White;
-            PictureBox.Location = new Point(0, 173);
+            PictureBox.Location = new Point(-2, 173);
             PictureBox.Name = "PictureBox";
-            PictureBox.Size = new Size(1154, 531);
+            PictureBox.Size = new Size(1161, 531);
             PictureBox.TabIndex = 2;
             PictureBox.TabStop = false;
             PictureBox.Paint += PictureBox_Paint;
-            PictureBox.MouseClick += PictureBox_MouseClick;
             PictureBox.MouseDoubleClick += PictureBox_MouseDoubleClick;
             PictureBox.MouseDown += PictureBox_MouseDown;
+            PictureBox.MouseEnter += PictureBox_MouseEnter;
+            PictureBox.MouseLeave += PictureBox_MouseLeave;
             PictureBox.MouseMove += PictureBox_MouseMove;
             PictureBox.MouseUp += PictureBox_MouseUp;
             // 
@@ -1105,20 +1160,20 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1154, 704);
+            ClientSize = new Size(1153, 704);
             Controls.Add(PictureBox);
             Controls.Add(Panel);
             Controls.Add(MenuStrip);
-            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = MenuStrip;
             Name = "DrawingApp";
-            Text = "Drawing App ver 0.2";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Drawing App ver 0.3";
             MenuStrip.ResumeLayout(false);
             MenuStrip.PerformLayout();
             Panel.ResumeLayout(false);
             Panel.PerformLayout();
-            flowLayoutPanel1.ResumeLayout(false);
-            flowLayoutPanel1.PerformLayout();
+            ShapesScrollMenu.ResumeLayout(false);
+            ShapesScrollMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)PictureBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -1138,9 +1193,6 @@
         private ToolStripMenuItem FillBucketMenu;
         private ToolStripMenuItem RotateReverseMenu;
         private Button Button_Fill;
-        private ToolStripMenuItem PencilMenu;
-        private Button Button_Eraser;
-        private Button Button_Pencil;
         private Button Button_White;
         private Button Button_Black;
         private Button Button_BrownTwo;
@@ -1168,31 +1220,39 @@
         private Button Button_Yellow;
         private Button Button_RedTwo;
         private Button Button_RedOne;
-        private FlowLayoutPanel flowLayoutPanel1;
+        private FlowLayoutPanel ShapesScrollMenu;
         private Button Button_Line;
         private Panel panel1;
         private Panel panel2;
         private Button Button_Circle;
         private Button Button_Rectangle;
         private Button Button_Triangle;
-        private Button Button_RightTriangle;
-        private Button Button_RotateClock;
         private ToolTip toolTip1;
         private Button Button_Delete;
-        private Button Button_RotateReverseClock;
         private Label Label_Tools;
         private Label Label_Colors;
         private Label Label_Shapes;
         private ToolStripMenuItem RotateMenu;
-        private ToolStripMenuItem EraserMenu;
         private ToolStripMenuItem DeleteMenu;
-        private ToolStripMenuItem shapesToolStripMenuItem;
+        private ToolStripMenuItem ShapesMenu;
         private ToolStripMenuItem LineMenu;
         private ToolStripMenuItem CircleMenu;
         private ToolStripMenuItem RectangleMenu;
         private ToolStripMenuItem TriangleMenu;
-        private ToolStripMenuItem RightTriangleMenu;
         private Button Button_Move;
         private Button Button_Clear;
+        private Label Label_Width;
+        private TextBox TextBox_Width;
+        private Panel panel4;
+        private ToolStripMenuItem MoveMenu;
+        private ToolStripMenuItem ClearMenu;
+        private ToolStripMenuItem ColorPickerMenu;
+        private ToolStripMenuItem HelpMenu;
+        private ToolStripMenuItem PointerMenu;
+        private Button Button_Pointer;
+        private ToolStripMenuItem UndoMenu;
+        private ToolStripMenuItem RedoMenu;
+        private Panel panel5;
+        private Panel panel3;
     }
 }

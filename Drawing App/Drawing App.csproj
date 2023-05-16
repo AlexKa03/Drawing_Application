@@ -10,7 +10,24 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <Compile Remove="Resources\ico files\**" />
+    <EmbeddedResource Remove="Resources\ico files\**" />
+    <None Remove="Resources\ico files\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="icon.ico" />
+    <None Remove="iconSettings.ico" />
+    <None Remove="Resources\icon1.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="icon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="iconSettings.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
