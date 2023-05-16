@@ -78,7 +78,10 @@ namespace Drawing_App.Forms
                 LabelHeight.Text = "Start point X";
                 LabelWidth.Text = "Start point Y";
                 LabelX.Text = "End point X";
-                LabelY.Text = "Start point Y";
+                LabelY.Text = "End point Y";
+                LabelPerimeter.Text = "Length";
+                LabelOutlineWidth.Text = "Line Width";
+                LabelOutlineColor.Text = "Line Color";
 
                 LabelArea.Visible = false;
                 TextBoxArea.Visible = false;

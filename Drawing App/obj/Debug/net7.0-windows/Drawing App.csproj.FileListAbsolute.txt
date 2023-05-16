@@ -1,0 +1,22 @@
+C:\Users\hp\OneDrive\Работен плот\DrawingApp\Drawing App\bin\Debug\net7.0-windows\icon.ico
+C:\Users\hp\OneDrive\Работен плот\DrawingApp\Drawing App\bin\Debug\net7.0-windows\iconSettings.ico
+C:\Users\hp\OneDrive\Работен плот\DrawingApp\Drawing App\bin\Debug\net7.0-windows\Drawing App.exe
+C:\Users\hp\OneDrive\Работен плот\DrawingApp\Drawing App\bin\Debug\net7.0-windows\Drawing App.deps.json
+C:\Users\hp\OneDrive\Работен плот\DrawingApp\Drawing App\bin\Debug\net7.0-windows\Drawing App.runtimeconfig.json
+C:\Users\hp\OneDrive\Работен плот\DrawingApp\Drawing App\bin\Debug\net7.0-windows\Drawing App.dll
+C:\Users\hp\OneDrive\Работен плот\DrawingApp\Drawing App\bin\Debug\net7.0-windows\Drawing App.pdb
+C:\Users\hp\OneDrive\Работен плот\DrawingApp\Drawing App\obj\Debug\net7.0-windows\Drawing App.csproj.AssemblyReference.cache
+C:\Users\hp\OneDrive\Работен плот\DrawingApp\Drawing App\obj\Debug\net7.0-windows\Drawing_App.Forms.HelpForm.resources
+C:\Users\hp\OneDrive\Работен плот\DrawingApp\Drawing App\obj\Debug\net7.0-windows\Drawing_App.DrawingApp.resources
+C:\Users\hp\OneDrive\Работен плот\DrawingApp\Drawing App\obj\Debug\net7.0-windows\Drawing_App.Forms.ShapeProperties.resources
+C:\Users\hp\OneDrive\Работен плот\DrawingApp\Drawing App\obj\Debug\net7.0-windows\Drawing_App.Properties.Resources.resources
+C:\Users\hp\OneDrive\Работен плот\DrawingApp\Drawing App\obj\Debug\net7.0-windows\Drawing App.csproj.GenerateResource.cache
+C:\Users\hp\OneDrive\Работен плот\DrawingApp\Drawing App\obj\Debug\net7.0-windows\Drawing App.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hp\OneDrive\Работен плот\DrawingApp\Drawing App\obj\Debug\net7.0-windows\Drawing App.AssemblyInfoInputs.cache
+C:\Users\hp\OneDrive\Работен плот\DrawingApp\Drawing App\obj\Debug\net7.0-windows\Drawing App.AssemblyInfo.cs
+C:\Users\hp\OneDrive\Работен плот\DrawingApp\Drawing App\obj\Debug\net7.0-windows\Drawing App.csproj.CoreCompileInputs.cache
+C:\Users\hp\OneDrive\Работен плот\DrawingApp\Drawing App\obj\Debug\net7.0-windows\Drawing App.dll
+C:\Users\hp\OneDrive\Работен плот\DrawingApp\Drawing App\obj\Debug\net7.0-windows\refint\Drawing App.dll
+C:\Users\hp\OneDrive\Работен плот\DrawingApp\Drawing App\obj\Debug\net7.0-windows\Drawing App.pdb
+C:\Users\hp\OneDrive\Работен плот\DrawingApp\Drawing App\obj\Debug\net7.0-windows\Drawing App.genruntimeconfig.cache
+C:\Users\hp\OneDrive\Работен плот\DrawingApp\Drawing App\obj\Debug\net7.0-windows\ref\Drawing App.dll

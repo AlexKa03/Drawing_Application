@@ -148,8 +148,10 @@ namespace Drawing_App
                 _redoStack.Push(currentState.Clone());
                 var prevState = _undoStack.Pop();
                 _shapes.ShapeList = new List<Shape>(prevState.ShapeList);
-                PictureBox.BackColor = prevState.BackgroundColor;
+                PictureBox.BackColor = currentState.BackgroundColor;
                 PictureBox.Invalidate();
+
+                SetAllButtonInactive();
             }
         }
         private void RedoMenu_Click(object sender, EventArgs e)
@@ -161,6 +163,8 @@ namespace Drawing_App
                 _shapes.ShapeList = new List<Shape>(nextState.ShapeList);
                 PictureBox.BackColor = nextState.BackgroundColor;
                 PictureBox.Invalidate();
+
+                SetAllButtonInactive();
             }
         }
 
@@ -440,13 +444,16 @@ namespace Drawing_App
                 else if (_selectedShape != null && _drawingMode == DrawingMode.Move)
                 {
                     int deltaX = e.Location.X - _mouseDownPoint.X;
-                    int deltaY = e.Location.Y - _mouseDownPoint.Y;
-                    _selectedShape.Location = new Point(_selectedShape.Location.X + deltaX, _selectedShape.Location.Y + deltaY);
+                    int deltaY = e.Location.Y - _mouseDownPoint.Y;               
 
                     if (_selectedShape is LineShape line)
                     {
                         line.StartPoint = new Point(line.StartPoint.X + deltaX, line.StartPoint.Y + deltaY);
                         line.EndPoint = new Point(line.EndPoint.X + deltaX, line.EndPoint.Y + deltaY);
+                    }
+                    else
+                    {
+                        _selectedShape.Location = new Point(_selectedShape.Location.X + deltaX, _selectedShape.Location.Y + deltaY);
                     }
 
                     _mouseDownPoint = e.Location;
@@ -479,6 +486,7 @@ namespace Drawing_App
                 PictureBox.BackColor = Color.White;
 
                 Refresh();
+                UpdateUndoRedoButtonStates();
             }
 
             Button_Clear.FlatAppearance.BorderColor = Color.FromArgb(249, 249, 249);
@@ -537,17 +545,22 @@ namespace Drawing_App
         //-------------------------------- Colors --------------------------------------
         private void Button_Color_Click(object sender, EventArgs e)
         {
+            if (lastPressedButton != null)
+            {
+                SetAllButtonInactive();
+            }
+
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 _newColor = colorDialog.Color;
                 _pen.Color = _newColor;
                 PictureBox_OutlineColor.BackColor = _newColor;
 
-                SetButtonActive(Button_Color);
-                Button_Color.FlatAppearance.BorderColor = Color.FromArgb(249, 249, 249);
+                //SetButtonActive(Button_Color);
+                //Button_Color.FlatAppearance.BorderColor = Color.FromArgb(249, 249, 249);
             }
 
-            Button_Color.FlatAppearance.BorderColor = Color.FromArgb(249, 249, 249);
+            //Button_Color.FlatAppearance.BorderColor = Color.FromArgb(249, 249, 249);
         }
         private void Button_Colored_Click(object sender, EventArgs e)
         {
@@ -671,6 +684,10 @@ namespace Drawing_App
             button.FlatAppearance.BorderColor = Color.Black;
 
             lastPressedButton = button;
+        }
+        private void SetAllButtonInactive()
+        {
+            lastPressedButton.FlatAppearance.BorderSize = 0;
         }
 
         private void LoadIcon()
